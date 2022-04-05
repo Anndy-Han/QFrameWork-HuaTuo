@@ -2,11 +2,9 @@
 
 一个示例热更新项目。
 
-想了解更多，请加 QQ群: 651188171（huatuo c#热更新）。
-
 你可以使用发布的包来体验huatuo热更新功能。
 
-**示例项目使用 Unity 2020.3.7 版本**，需要精确匹配。
+**示例项目使用 Unity 2020.3.21 版本**，需要精确匹配。
 
 ## 目录介绍
 
@@ -22,7 +20,7 @@ huatuo为c++实现，只有打包后才可使用。日常开发在编辑器下�
 
 ### 工作原理
 
-进入场景后，Main场景中的LoadDll会自动加载 StreamingAssets目录下的 HotFix.dll，并且运行 App::Main函数。
+进入场景后，SampleScene场景中的QFrameWork会自动加载 StreamingAssets目录下的 HotFix.dll，并且运行 App::Main函数。
 
 ### 运行测试
 
