@@ -2,16 +2,11 @@
 using QFrameWork;
 using UnityEngine;
 
-namespace HotFix.Module.Login
+namespace HotFix.Module
 {
     public class LoginProcedure : BaseProcedure
     {
         private LoginView view;
-
-        public override void OnLoad()
-        {
-            base.OnLoad();
-        }
 
         public override void OnAwake()
         {
@@ -19,9 +14,17 @@ namespace HotFix.Module.Login
 
             view = new LoginView(LoadWidget("LoginView"));
 
+            view.onClickButton = OnClickButton;
+
             Debug.Log("LoginProcedure-OnAwake");
         }
 
+        private void OnClickButton()
+        {
+            ChangeProcedure(CreateProcedureEnter("HotFix.Module.HomeProcedure"));
+
+            ChangeProcedure(CreateProcedureLeave("HotFix.Module.LoginProcedure"));
+        }
 
         public override void OnEnter(Msg msg)
         {

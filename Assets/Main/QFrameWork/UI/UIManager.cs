@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
+using System.Collections;
+using System.Threading.Tasks;
+using UnityEngine.AddressableAssets;
+using System.Text;
 
 namespace QFrameWork
 {
@@ -49,28 +54,46 @@ namespace QFrameWork
         /// <returns></returns>
         public Widget LoadWidget(string widget)
         {
-            if (_UIDict.ContainsKey(widget) == false || _UIDict[widget] == null)
+            if (!_UIDict.ContainsKey(widget))
             {
-                Widget go = GameObject.Instantiate(widgets.Find(s => s.gameObject.name.Equals(widget.ToString())));
-                WidgetType widgetType = go.WidgetType;
-                switch (widgetType)
+                var asset = assetManager.LoadAssetAsync<GameObject>(widget);
+                if (asset != null)
                 {
-                    case WidgetType.Modal:
-                        go.transform.SetParent(modalCanvas, false);
-                        break;
-                    case WidgetType.Normal:
-                        go.transform.SetParent(normalCanvas, false);
-                        break;
-                    case WidgetType.Window:
-                        break;
+                    Widget go = GameObject.Instantiate(asset).GetComponent<Widget>();
+                    WidgetType widgetType = go.WidgetType;
+                    switch (widgetType)
+                    {
+                        case WidgetType.Modal:
+                            go.transform.SetParent(modalCanvas, false);
+                            break;
+                        case WidgetType.Normal:
+                            go.transform.SetParent(normalCanvas, false);
+                            break;
+                        case WidgetType.Window:
+                            break;
+                    }
+                    _UIDict.AddOrReplace(widget, go);
+                    go.gameObject.name = widget;
+                    go.transform.SetAsLastSibling();
+                    go.gameObject.SetActive(false);
+                    return go;
                 }
-                _UIDict.AddOrReplace(widget, go);
-                go.gameObject.name = widget;
-                go.transform.SetAsLastSibling();
-                go.gameObject.SetActive(false);
-                return go;
+                else
+                {
+                    Debug.Log(asset + "is null");
+                }
             }
             return _UIDict[widget];
+        }
+
+        private void OnFailLoadAssetCallback()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void OnSuccessLoadAssetCallback(UnityEngine.Object obj)
+        {
+
         }
 
         /// <summary>

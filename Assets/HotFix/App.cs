@@ -9,7 +9,7 @@ public class App
     public static int Main()
     {
         Debug.Log("hello,huatuo");
-        QFrameWork.Global.proceduceManager.ChangeProcedure(QFrameWork.Global.proceduceManager.CreateProcedureEnter("HotFix.Module.Login.LoginProcedure"));
+        Global.proceduceManager.ChangeProcedure(QFrameWork.Global.proceduceManager.CreateProcedureEnter("HotFix.Module.LoginProcedure"));
         return 0;
     }
 }

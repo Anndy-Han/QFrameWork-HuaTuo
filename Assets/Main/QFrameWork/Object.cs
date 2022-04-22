@@ -107,11 +107,6 @@ namespace QFrameWork
             }
         }
 
-        public void ReleaseResource()
-        {
-            this.resourcesManager.ReleaseResource();
-        }
-
         public void HttpSend(string url, int timeout, Action<object> onSuccessCallback, Action<object> onFailCallback)
         {
             this.networkManager.HttpSend(url, timeout, onSuccessCallback, onFailCallback);
@@ -128,11 +123,6 @@ namespace QFrameWork
         public IEventDispatcher eventDispatcher
         {
             get { return Global.eventDispatcher; }
-        }
-
-        public IResourcesManager resourcesManager
-        {
-            get { return Global.resourcesManager; }
         }
 
         public IUIManager uiManager
@@ -158,6 +148,10 @@ namespace QFrameWork
         public IEntityManager entityManager 
         {
             get { return Global.entityManager; }
+        }
+
+        public IAssetManager assetManager {
+            get { return Global.assetManager; }
         }
     }
 }

@@ -38,8 +38,6 @@ namespace QFrameWork
 
             Global.eventDispatcher = GetRuntimeManager<EventDispatcher>() as EventDispatcher;
 
-            Global.resourcesManager = GetRuntimeManager<ResourcesManager>() as ResourcesManager;
-
             Global.uiManager = GetRuntimeManager<UIManager>() as UIManager;
 
             Global.proceduceManager = GetRuntimeManager<ProcedureManager>() as ProcedureManager;
@@ -88,6 +86,15 @@ namespace QFrameWork
 
             Application.targetFrameRate = this.appMate.targetFrameRate;
 
+            if (appMode == AppMode.Developing)
+            {
+                Global.assetManager = GetRuntimeManager<EditorAssetManager>() as EditorAssetManager;
+            }
+            else
+            {
+                Global.assetManager = GetRuntimeManager<AddressableAssetManager>() as AddressableAssetManager;
+            }
+
             LoadRuntimeManager();
 
             BaseProcedure.qBehaviour = this;
@@ -96,14 +103,6 @@ namespace QFrameWork
 
             ChangeProcedure(CreateProcedureEnter(this.appMate.startProcedure));
 
-            if (appMode == AppMode.Developing)
-            {
-               
-            }
-            else
-            {
-                
-            }
             yield return null;
         }
 

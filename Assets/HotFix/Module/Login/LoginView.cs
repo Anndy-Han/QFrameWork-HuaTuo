@@ -3,7 +3,7 @@ using UnityEngine;
 using QFrameWork;
 using UnityEngine.UI;
 
-namespace HotFix.Module.Login
+namespace HotFix.Module
 {
     public class LoginView : BaseView
     {
@@ -12,9 +12,13 @@ namespace HotFix.Module.Login
 
         }
 
+        public Action onClickButton;
+
         public override void Init()
         {
             base.Init();
+
+            SetButtonListener("Image/Button", () => { onClickButton(); });
         }
     }
 }

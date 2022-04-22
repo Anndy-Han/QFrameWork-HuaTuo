@@ -106,11 +106,6 @@ namespace QFrameWork
             get { return Global.eventDispatcher; }
         }
 
-        public IResourcesManager resourcesManager
-        {
-            get { return Global.resourcesManager; }
-        }
-
         public IUIManager uiManager
         {
             get { return Global.uiManager; }
@@ -134,6 +129,10 @@ namespace QFrameWork
         public IEntityManager entityManager 
         {
             get { return Global.entityManager; }
+        }
+
+        public IAssetManager assetManager {
+            get { return Global.assetManager; }
         }
     }
 }
