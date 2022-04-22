@@ -1,36 +1,6 @@
 # huatuo 体验项目
 
-一个示例热更新项目。 目前还没有添加AssetBundle打包和加载功能。
+Unity Version:2020.3.33f1c1 
 
-你可以使用发布的包来体验huatuo热更新功能。
+一个示例热更新项目。
 
-**示例项目使用 Unity 2020.3.21 版本**，需要精确匹配。
-
-## 目录介绍
-
-- Assets Unity项目目录
-  - Main AOT主包模块
-  - Hotfix 热更新模块
-
-## 使用介绍
-
-huatuo为c++实现，只有打包后才可使用。日常开发在编辑器下，无需打包。
-
-如何打包出一个可热更新的包，请先参阅 [快速上手](https://github.com/focus-creative-games/huatuo/blob/main/docs/start_up.md)。
-
-### 工作原理
-
-进入场景后，SampleScene场景中的QFrameWork会自动加载 StreamingAssets目录下的 HotFix.dll，并且运行 App::Main函数。
-
-### 运行测试
-
-运行你们自己打包出的程序，你会看到屏幕上打印 "hello,huatuo" 。
-
-### 体验热更新
-
-- 打开 huatuo.sln
-- 在HotFix项目的App::Main中修改代码，比如改成打印 "hello,world"。
-- 编译HotFix。将编译好的HotFix.dll复制到发布目录。**注意**要退出测试程序，不然dll被占用，无法复制。
-- 再将运行，屏幕上会打印"hello,world"。
-
-剩下的体验之旅，比如各种c#特性，自己体验吧。
